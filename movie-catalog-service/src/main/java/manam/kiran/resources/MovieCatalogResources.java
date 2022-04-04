@@ -15,6 +15,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 import manam.kiran.models.CatalogItem;
 import manam.kiran.models.Movie;
 import manam.kiran.models.Rating;
+import manam.kiran.models.UserRating;
 
 @RestController
 @RequestMapping("/catalog")
@@ -29,12 +30,13 @@ public class MovieCatalogResources {
 	@RequestMapping("/{userId}")
 	public List<CatalogItem> getCatalog(@PathVariable("userId") String userId) {
 
-		List<Rating> ratings = Arrays.asList(new Rating("RRR", 4), new Rating("Radhe Shyam", 2));
+		List<Rating> ratings = restTemplate
+				.getForObject("http://localhost:8083/ratingdata/users/" + userId, UserRating.class).getRatings();
 
 		return ratings.stream().map(rating -> {
 
 			Movie movie = restTemplate.getForObject("http://localhost:8082/movies/" + rating.getMovieId(), Movie.class);
-			return new CatalogItem(rating.getMovieId(), rating.getMovieId() + " Description", rating.getRating());
+			return new CatalogItem(movie.getName(), movie.getName() + " Description", rating.getRating());
 		}).collect(Collectors.toList());
 
 	}
@@ -46,8 +48,8 @@ public class MovieCatalogResources {
 
 		return ratings.stream().map(rating -> {
 
-			Movie movie = webClientBuilder.build().get().uri("http://localhost:8082/movies/" + rating.getMovieId()).retrieve()
-					.bodyToMono(Movie.class).block();
+			Movie movie = webClientBuilder.build().get().uri("http://localhost:8082/movies/" + rating.getMovieId())
+					.retrieve().bodyToMono(Movie.class).block();
 			return new CatalogItem(rating.getMovieId(), rating.getMovieId() + " Description", rating.getRating());
 		}).collect(Collectors.toList());
 
