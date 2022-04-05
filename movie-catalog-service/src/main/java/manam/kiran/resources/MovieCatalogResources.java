@@ -36,7 +36,7 @@ public class MovieCatalogResources {
 		return ratings.stream().map(rating -> {
 
 			Movie movie = restTemplate.getForObject("http://movie-info-service/movies/" + rating.getMovieId(), Movie.class);
-			return new CatalogItem(movie.getName(), movie.getName() + " Description", rating.getRating());
+			return new CatalogItem(movie.getTitle(), movie.getOverview(), rating.getRating());
 		}).collect(Collectors.toList());
 
 	}
@@ -44,7 +44,7 @@ public class MovieCatalogResources {
 	@RequestMapping("/web/{userId}")
 	public List<CatalogItem> getCatalogViaWebClient(@PathVariable("userId") String userId) {
 
-		List<Rating> ratings = Arrays.asList(new Rating("RRR", 4), new Rating("Radhe Shyam", 2));
+		List<Rating> ratings = Arrays.asList(new Rating("100", 4), new Rating("143", 2));
 
 		return ratings.stream().map(rating -> {
 
