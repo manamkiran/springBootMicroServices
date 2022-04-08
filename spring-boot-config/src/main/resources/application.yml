@@ -1,0 +1,20 @@
+my.greeting: Hello Kiran
+
+app:
+   name: Spring-Boot-Config
+   description: ${app.name} is used to test configuration
+spring.properties.reading.order: "https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.external-config"
+
+# Providing List of values
+my.list.values: "One,Two,Three"
+
+#provding Key Value Pair 
+dbValues: "{url:'someURL',user:'user',password:'password'}"
+
+db: 
+   connection: "{url:'someURL',user:'user',password:'password'}"
+   host: localhost
+   port: 3342
+
+#management
+management.endpoints.web.exposure.include: "*"
