@@ -16,6 +16,9 @@ public class GreetingController {
 	@Value("${my.greeting.doesnt.exist: default value}")
 	private String optonalGreeting;
 	
+	@Value("static message")
+	private String staticMessage;
+	
 	@Value("${app.description}")
 	private String appDescription;
 	
@@ -24,7 +27,7 @@ public class GreetingController {
 
 	@GetMapping("/greeting")
 	public String getGreeting() {
-		return greeting + " Welcome to my app" + appDescription + "\n" + listValues;
+		return greeting + " Welcome to my app" + appDescription + "<br>" + listValues + "  with other messages <br>" + staticMessage+optonalGreeting;
 	}
 	
 }
