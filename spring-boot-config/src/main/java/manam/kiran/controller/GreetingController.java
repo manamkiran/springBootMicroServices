@@ -10,6 +10,10 @@ public class GreetingController {
 	@Value("${my.greeting}")
 	private String greeting;
 	
+	// use default value if value doesn't exist
+	@Value("${my.greeting.doesnt.exist: default value}")
+	private String optonalGreeting;
+	
 	@Value("${app.description}")
 	private String appDescription;
 
