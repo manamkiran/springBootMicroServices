@@ -1,5 +1,7 @@
 package manam.kiran.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,10 +18,13 @@ public class GreetingController {
 	
 	@Value("${app.description}")
 	private String appDescription;
+	
+	@Value("${my.list.values}")
+	private List<String> listValues;
 
 	@GetMapping("/greeting")
 	public String getGreeting() {
-		return greeting + " Welcome to my app" + appDescription;
+		return greeting + " Welcome to my app" + appDescription + "\n" + listValues;
 	}
 	
 }
