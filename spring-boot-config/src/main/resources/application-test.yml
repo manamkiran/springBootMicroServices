@@ -12,11 +12,9 @@ my.list.values: "One,Two,Three"
 dbValues: "{url:'someURL',user:'user',password:'password'}"
 
 db: 
-   connection: "{url:'someURL',user:'user',password:'password'}"
+   connection: test-connection-string
    host: localhost
-   port: 3342
+   port: 2222
 
 #management
 management.endpoints.web.exposure.include: "*"
-
-spring.profiles.active: test
