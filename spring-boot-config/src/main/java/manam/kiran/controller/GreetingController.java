@@ -41,7 +41,7 @@ public class GreetingController {
 
 	@GetMapping("/greeting")
 	public String getGreeting() {
-		return greeting + " Welcome to my app" + appDescription + "<br>" + listValues + "  with other messages <br>"
+		return greeting + "<br> Welcome to my app" + appDescription + "<br>" + listValues + "  with other messages <br>"
 				+ staticMessage + optonalGreeting + "<br>" + dbValues + "<br> Printing DB Settings <br>"
 				+ dbSettings.getConnection() + "<br>" + dbSettings.getHost() + "<br>" + dbSettings.getPort() + "<br>";
 	}

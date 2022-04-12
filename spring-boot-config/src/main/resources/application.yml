@@ -20,3 +20,10 @@ db:
 management.endpoints.web.exposure.include: "*"
 
 spring.profiles.active: test
+
+spring.config.import: "configserver:http://localhost:8888"
+
+spring.application.name: spring-boot-config
+
+## Rules
+# Profile takes prcedence even over spring config server
